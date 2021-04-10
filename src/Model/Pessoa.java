@@ -1,126 +1,96 @@
 package Model;
 
-/*JAVA BEAN
- * 
- *É um padrão de desenho em Java em que a class é criada
- *com os seguintes elementos:
- *
- * 1 - atributos privados
- * 2 - métodos de acesso (get)
- * 3 - métodos de modificação (set)
- * 4 - um método strind
- * */
+/*
+ * Java Bean - � um padr�o de desenho em Java em que a classe � criada com os seguintes elementos
+ * 1 - Atributos privados
+ * 2 - M�todos de acesso get p�blicos
+ * 3 - M�todos de modifica��o set p�blicos
+ * 4 - Um m�todo toString() p�blico
+ * 5 - Um m�todo construtor
+ */
 public class Pessoa {
 
 	private int id;
-	private String primeiro_nome;
-	private String ultimo_nome;
+	private String primeiroNome;
+	private String ultimoNome;
 	private String cidade;
 	private double altura;
 	private double peso;
 	
-	private static int ultimoID = 0;
-	
-	public Pessoa(String primeiro_nome, String ultimo_nome, String cidade, int altura, int peso) {
-		// TODO Auto-generated constructor stub
-		this.setId(ultimoID++);
-		this.setPrimeiro_nome(primeiro_nome);
-		this.setUltimo_nome(ultimo_nome);
+	private static int ultimoId = 1;
+
+	public Pessoa(String primeiroNome, String ultimoNome, String cidade, double altura, double peso) {
+		this.setId(Pessoa.ultimoId);
+		this.setPrimeiroNome(primeiroNome);
+		this.setUltimoNome(ultimoNome);
 		this.setCidade(cidade);
 		this.setAltura(altura);
 		this.setPeso(peso);
+		Pessoa.ultimoId++;
 	}
 	
-	/**
-	 * @return the id
-	 */
+	public String getPrimeiroNome() {
+		return this.primeiroNome;
+	}
+	
+	public void setPrimeiroNome(String primeiroNome) {
+		this.primeiroNome = primeiroNome;
+	}
+
+	public String getUltimoNome() {
+		return ultimoNome;
+	}
+
+	public void setUltimoNome(String ultimoNome) {
+		this.ultimoNome = ultimoNome;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public double getAltura() {
+		return altura;
+	}
+
+	public void setAltura(double altura) {
+		this.altura = altura;
+	}
+
+	public double getPeso() {
+		return peso;
+	}
+
+	public void setPeso(double peso) {
+		this.peso = peso;
+	}
+
+	public String getNomeCompleto() {
+		return this.getPrimeiroNome() + " " + this.getUltimoNome();
+	}
+
+	public void setNomeCompleto(String nomeCompleto) {
+		int espaco = nomeCompleto.indexOf(' ');
+		this.setPrimeiroNome(nomeCompleto.substring(0, espaco));
+		this.setUltimoNome(nomeCompleto.substring(espaco + 1, nomeCompleto.length()));
+	}
+	
+	@Override
+	public String toString() {
+		return this.getId() + "-" + this.getPrimeiroNome() + " " + this.getUltimoNome() +
+			   " - " + this.getCidade() + ", Altura: " + this.getAltura() + " Peso:" + this.getPeso();
+	}
+
 	public int getId() {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
+	private void setId(int id) {
 		this.id = id;
 	}
-
-	/**
-	 * @return the primeiro_nome
-	 */
-	public String getPrimeiro_nome() {
-		return primeiro_nome;
-	}
-
-
-	/**
-	 * @param primeiro_nome the primeiro_nome to set
-	 */
-	public void setPrimeiro_nome(String primeiro_nome) {
-		this.primeiro_nome = primeiro_nome;
-	}
-	/**
-	 * @return the ultimo_nome
-	 */
-	public String getUltimo_nome() {
-		return ultimo_nome;
-	}
-	/**
-	 * @param ultimo_nome the ultimo_nome to set
-	 */
-	public void setUltimo_nome(String ultimo_nome) {
-		this.ultimo_nome = ultimo_nome;
-	}
-	/**
-	 * @return the cidade
-	 */
-	public String getCidade() {
-		return cidade;
-	}
-	/**
-	 * @param cidade the cidade to set
-	 */
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-	/**
-	 * @return the altura
-	 */
-	public double getAltura() {
-		return altura;
-	}
-	/**
-	 * @param altura the altura to set
-	 */
-	public void setAltura(double altura) {
-		this.altura = altura;
-	}
-	/**
-	 * @return the peso
-	 */
-	public double getPeso() {
-		return peso;
-	}
-	/**
-	 * @param peso the peso to set
-	 */
-	public void setPeso(double peso) {
-		this.peso = peso;
-	}
-	
-	public String getNomeCompleto() {
-		return this.getPrimeiro_nome()+ " " + this.getUltimo_nome();
-	}
-
-	public String toString() {
-		return this.getId() + " - " +
-				this.getPrimeiro_nome()+" " + 
-				this.getUltimo_nome()+" "+
-				this.getCidade()+" "+
-				this.getAltura()+" "+
-				this.getPeso();
-	}
-
-	
 	
 }
